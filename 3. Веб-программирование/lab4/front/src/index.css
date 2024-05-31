@@ -1,0 +1,72 @@
+header {
+    color: blueviolet;
+    background-color: khaki;
+}
+
+header p.btn {
+    color: whitesmoke;
+}
+
+div:has(> header) {
+    background-color: khaki;
+}
+
+body {
+    background-image: url("bgi.jpg");
+    background-size: revert;
+    background-repeat: repeat-y;
+    background-color: khaki;
+}
+
+.page-frame {
+    background-color: whitesmoke;
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: 0 0 5px 3px khaki;
+
+}
+
+.page-frame:has( table ) {
+    min-height: 530px;
+}
+
+#updating-clock {
+    font-size: 36px;
+    font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 200;
+
+}
+
+.header-line {
+    margin-top: 20px;
+    border-bottom: 2px solid black;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+td {
+    margin: 5px 0;
+    border-bottom: 1px solid black;
+    /*border-bottom: 1px solid black;*/
+}
+
+canvas {
+    margin-top: 7px;
+    padding: 3px;
+    border: 1px crimson solid;
+}
+
+.custom-hide-elem {
+    visibility: hidden;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    table {
+        padding-left: px;
+    }
+
+}

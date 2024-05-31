@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Lab 3</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+<h:body>
+
+    <h:form prependId="false">
+        <h:inputText id="bigTZ" value="#{model.timezoneOffset}" styleClass="customHide">
+            <f:ajax listener="#{model.timezoneChangedListener}" />
+        </h:inputText>
+    </h:form>
+
+    <h:outputScript library="js" name="hehescript.js"/>
+
+    <div id="sidebar">
+        <div id="sidebar_content">
+            <h:graphicImage name="img/area.png" alt="plot"/>
+        </div>
+    </div>
+
+    <div id="new_sidebar">
+        <div id="new_sidebar_content">
+            <canvas id="big_canvas" width="300px" height="300px">Change browser</canvas>
+        </div>
+    </div>
+
+    <h:form>
+        <h:commandButton value="Перейти по ссылке" action="gotoStart"/>
+    </h:form>
+
+    <!-- Form -->
+
+    <div id="place_for_form">
+
+        <h:form id="thisIsForm" action="#{thisIsMyBean.doExtend()}">
+
+            <div class="form_wrapper">
+
+                <!-- x coordinate -->
+                <div id="form_left" class="form_block">
+                    <p>Введите X</p>
+                    <h:inputHidden id="theBestX" value="#{point.x}"/>
+                    <h:selectOneMenu id="x_value">
+                        <f:selectItem itemValue = "-3" itemLabel = "-3" />
+                        <f:selectItem itemValue = "-2" itemLabel = "-2" />
+                        <f:selectItem itemValue = "-1" itemLabel = "-1" />
+                        <f:selectItem itemValue = "0" itemLabel = "0" />
+                        <f:selectItem itemValue = "1" itemLabel = "1" />
+                        <f:selectItem itemValue = "2" itemLabel = "2" />
+                        <f:selectItem itemValue = "3" itemLabel = "3" />
+                        <f:selectItem itemValue = "4" itemLabel = "4" />
+                        <f:selectItem itemValue = "5" itemLabel = "5" />
+                        <f:ajax event="change" onevent="updateX"/>
+                    </h:selectOneMenu>
+                </div>
+
+
+                <!-- y coordinate -->
+                <div id="form_center" class="form_block">
+                    <p>Введите Y</p>
+
+                    <h:inputText id="y_value" name="y_value" required="true" value="#{point.y}"/>
+                    <div id="y_message"></div>
+
+                </div>
+
+                <!-- radius -->
+                <div id="form_right" class="form_block">
+                    <p>Введите R</p>
+
+                    <h:inputText id="r_value" name="r_value" required="true" value="#{point.r}"/>
+                    <div id="r_message"></div>
+
+                </div>
+
+                <div class="line_breaker"></div>
+
+                <!-- Submit button -->
+                <h:commandButton type="submit" name="btnSubmit" value="Отправить">
+                    <f:ajax execute="@form" render="maintable" listener="#{thisIsMyBean.doExtend()}"/>
+                </h:commandButton>
+
+            </div>
+
+        </h:form>
+    </div>
+
+    <!-- table -->
+
+    <div id="table_div">
+        <h:dataTable id="maintable" value="#{model.getReversed()}" var="row">
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="X" />
+                </f:facet>
+                <h:outputText value="#{row.x}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Y" />
+                </f:facet>
+                <h:outputText value="#{row.y}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="R" />
+                </f:facet>
+                <h:outputText value="#{row.r}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Время запроса" />
+                </f:facet>
+                <h:outputText value="#{row.getTimeStampFormatted()}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Время работы, нс" />
+                </f:facet>
+                <h:outputText value="#{row.workingTime}" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Результат" />
+                </f:facet>
+                <h:outputText value="#{(row.status ? 'HIT' : 'MISS')}" />
+            </h:column>
+        </h:dataTable>
+    </div>
+
+    <h:outputScript library="js" name="script.js"/>
+</h:body>
+
+</html>

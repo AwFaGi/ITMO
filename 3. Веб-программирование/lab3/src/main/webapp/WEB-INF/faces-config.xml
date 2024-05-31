@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                                  http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    <navigation-rule>
+        <from-view-id>/start.xhtml</from-view-id>
+        <navigation-case>
+            <description>Переход на основную страницу</description>
+            <from-outcome>gotoMain</from-outcome>
+            <to-view-id>/main.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/main.xhtml</from-view-id>
+        <navigation-case>
+            <description>Переход на стартовую страницу</description>
+            <from-outcome>gotoStart</from-outcome>
+            <to-view-id>/start.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>model</managed-bean-name>
+        <managed-bean-class>org.example.beans.Model</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>extendedPoint</managed-bean-name>
+        <managed-bean-class>org.example.beans.ExtendedPoint</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>infoBean</managed-bean-name>
+        <managed-bean-class>org.example.beans.InfoBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>point</managed-bean-name>
+        <managed-bean-class>org.example.beans.Point</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>thisIsMyBean</managed-bean-name>
+        <managed-bean-class>org.example.beans.ThisIsMyBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>model</property-name>
+            <value>#{model}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>point</property-name>
+            <value>#{point}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>infoBean</property-name>
+            <value>#{infoBean}</value>
+        </managed-property>
+    </managed-bean>
+</faces-config>
